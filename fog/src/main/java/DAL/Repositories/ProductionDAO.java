@@ -30,10 +30,10 @@ public class ProductionDAO {
     {
         Connection stmt = null;
         List<Product> productList = new ArrayList<>();
-        String sql ="SELECT ProductionLine_ID, EMPNO, productionline.Order_ID, Started, Completed, productionline.Status, first_name, last_name, address, zipcode, city, orders.id\n" +
-            "FROM fog.productionline\n" +
-            "left join orders ON productionline.Order_ID = orders.Order_ID\n" +
-            "left join user ON orders.id = user.id\n" +
+        String sql ="SELECT ProductionLine_ID, EMPNO, ProductionLine.Order_ID, Started, Completed, ProductionLine.Status, first_name, last_name, address, zipcode, city, Orders.id\n" +
+            "FROM fog.ProductionLine\n" +
+            "left join Orders ON ProductionLine.Order_ID = Orders.Order_ID\n" +
+            "left join User ON orders.id = User.id\n" +
             "WHERE productionline.Status = 'Pending' OR productionline.Status ='Processing' OR Started <= now() + INTERVAL 1 DAY";
         try
         {

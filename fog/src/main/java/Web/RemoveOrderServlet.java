@@ -36,7 +36,7 @@ public class RemoveOrderServlet extends BaseServlet {
         
         odao.updateOrderStatus(oid, "Cancelled");
         
-        response.sendRedirect("/carport/cart");
+        response.sendRedirect("/FOG/carport/cart");
         
     }
 }

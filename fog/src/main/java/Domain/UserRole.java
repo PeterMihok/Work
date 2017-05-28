@@ -16,5 +16,6 @@ public enum UserRole
     Registered,
     SalesPerson,
     WarehousePerson,
+    Admin,
     Employee
 }

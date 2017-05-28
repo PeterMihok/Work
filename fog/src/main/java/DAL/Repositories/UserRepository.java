@@ -32,7 +32,7 @@ public class UserRepository
         PreparedStatement insertStatement;
         
         ResultSet rs;
-        String insertSQL = "SELECT * from user where email = ?";
+        String insertSQL = "SELECT * from User where email = ?";
 
         Connection connection = DataAccessObject.getConnection();
 
@@ -58,7 +58,7 @@ public class UserRepository
         PreparedStatement insertStatement;
         
         ResultSet rs;
-        String insertSQL = "SELECT * from user where email = ? AND id != ?";
+        String insertSQL = "SELECT * from User where email = ? AND id != ?";
 
         Connection connection = DataAccessObject.getConnection();
 
@@ -94,7 +94,7 @@ public class UserRepository
         PreparedStatement insertStatement;
         ResultSet rs;
         User user = null;
-        String insertSQL = "SELECT * from user where email = ? AND password = ?";
+        String insertSQL = "SELECT * from User where email = ? AND password = ?";
         
         Connection connection = DataAccessObject.getConnection();
         
@@ -146,7 +146,7 @@ public class UserRepository
             Connection connection = DataAccessObject.getConnection();
         
             // Execute insert
-            String insertSQL = "insert into user(first_name, last_name, email, password, role) values(?,?,?,?,?)";
+            String insertSQL = "insert into User(first_name, last_name, email, password, role) values(?,?,?,?,?)";
             insertStatement = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
             insertStatement.setString(1, newUser.getFirstName());
             insertStatement.setString(2, newUser.getLastName());
@@ -181,7 +181,7 @@ public class UserRepository
             Connection connection = DataAccessObject.getConnection();
         
             // Execute insert
-            String insertSQL = "update user set first_name = ?, last_name = ?, email = ?, phone = ?, address = ?, zipcode = ?, "
+            String insertSQL = "update User set first_name = ?, last_name = ?, email = ?, phone = ?, address = ?, zipcode = ?, "
                     + "city = ?, country = ? where id = ?";
             insertStatement = connection.prepareStatement(insertSQL);
             insertStatement.setString(1, user.getFirstName());
@@ -210,7 +210,7 @@ public class UserRepository
     public void updateUserVisits(User user) throws SQLException
     {
         Connection stmt = null;
-        String sql = "update user set Visits_AMT = Visits_AMT +1\n" +
+        String sql = "update User set Visits_AMT = Visits_AMT +1\n" +
             "WHERE id = ?";
          try
         {

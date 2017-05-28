@@ -22,7 +22,7 @@
           <div id="build-carport">   
             <h1>Search</h1>
           
-            <form action="/carport/search" method="post">
+            <form action="/FOG/carport/search" method="post">
                 <div class="field-wrap">
                     </div>
                <div class="field-wrap">

@@ -7,6 +7,7 @@ package Domain;
 
 import DAL.Repositories.GenerateCarportDAO;
 import DAL.Repositories.OrderDAO;
+import DAL.Repositories.PasswordUtils;
 import DAL.Repositories.UserRepository;
 import Services.GenCarport;
 import Web.BuildCarportServlet;
@@ -44,23 +45,27 @@ public class maintester {
 //         orderList = odao.getAllUserOrders(1);
 //         for(Carport cp : orderList)
 //         {
-//             System.out.println("HI");
-//         }
-//        odao.cancelOrder(5, "Cancelled");
-          GenCarport dao = new GenCarport();
-          Carport cdp = null;
-       //Generate the UUID KEY
-        String uuid = dao.generateUUID();
-        Carport CusCP = null;
-         GenerateCarportDAO gcdao = new GenerateCarportDAO();
-//        //Generate Inventory & Push to DB
-         try {
-              cdp = new Carport("Custom", uuid, 1000, 333, 333, "Standard", "yes");
-              dao.generateCP(cdp);
-              CusCP = gcdao.CarportFromUUID(cdp.getUUID());
-          } catch (Exception ex) {
-              Logger.getLogger(BuildCarportServlet.class.getName()).log(Level.SEVERE, null, ex);
-          }
-         System.out.println(CusCP.getCarportID());
+////             System.out.println("HI");
+////         }
+////        odao.cancelOrder(5, "Cancelled");
+//          GenCarport dao = new GenCarport();
+//          Carport cdp = null;
+//       //Generate the UUID KEY
+//        String uuid = dao.generateUUID();
+//        Carport CusCP = null;
+//         GenerateCarportDAO gcdao = new GenerateCarportDAO();
+////        //Generate Inventory & Push to DB
+//         try {
+//              cdp = new Carport("Custom", uuid, 1000, 333, 333, "Standard", "yes");
+//              dao.generateCP(cdp);
+//              CusCP = gcdao.CarportFromUUID(cdp.getUUID());
+//          } catch (Exception ex) {
+//              Logger.getLogger(BuildCarportServlet.class.getName()).log(Level.SEVERE, null, ex);
+//          }
+//         System.out.println(CusCP.getCarportID());
+         
+        
+        int dog = ((300+79)/80)+1;
+        System.out.println(dog);
     }
 }

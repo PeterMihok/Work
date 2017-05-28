@@ -102,6 +102,6 @@ public class EditProfileServlet extends BaseServlet
         }
                 
         // Redirect to home
-        response.sendRedirect("/");
+        response.sendRedirect("/FOG");
     }
 }

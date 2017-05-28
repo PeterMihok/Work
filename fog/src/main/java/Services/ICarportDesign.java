@@ -45,6 +45,6 @@ public interface ICarportDesign {
     
     void genWindbreakSidesCover() throws SQLException;
     
-    void initPartGeneration(Carport cp) throws Exception;
+    List initPartGeneration(Carport cp) throws Exception;
     
 }

@@ -8,9 +8,9 @@ import java.sql.SQLException;
 public final class DataAccessObject {
 
     private static final String Driver = "com.mysql.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://127.0.0.1:3306/fog";
-    private static final String Id = "root";
-    private static final String Pass = "sean666";
+    private static final String URL = "jdbc:mysql://139.59.153.132:3306/fog";
+    private static final String Id = "testuser";
+    private static final String Pass = "sean";
 
     public static Connection getConnection() throws ClassNotFoundException, SQLException
     {

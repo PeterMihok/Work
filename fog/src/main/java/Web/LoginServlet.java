@@ -109,7 +109,7 @@ public class LoginServlet extends BaseServlet
             UserSessionDto sessionUser = new UserSessionDto(user);
             session.setAttribute(SessionKeys.user, sessionUser);
             // Redirect to front page
-            response.sendRedirect("/");
+            response.sendRedirect("/FOG/");
         } catch (SQLException | ClassNotFoundException ex)
         {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);

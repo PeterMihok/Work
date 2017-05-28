@@ -64,7 +64,7 @@ public class OrderServlet extends BaseServlet {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(OrderServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-         response.sendRedirect("/");
+         response.sendRedirect("/FOG");
     }
     
 }

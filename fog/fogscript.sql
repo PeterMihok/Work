@@ -42,8 +42,8 @@ create table User(
 );
 
 create table User_Has_UserInfo(
-	UserInfo_ID int(7),
-    id int(7), 
+	UserInfo_ID int(7) NOT NULL,
+    id int(7) NOT NULL, 
     FOREIGN KEY(UserInfo_ID) REFERENCES UserInfo(UserInfo_ID),
     FOREIGN KEY(id) REFERENCES User(id)
 );
@@ -65,8 +65,8 @@ create table Roles(
 );
 
 create table User_Roles(
-	id int(7),
-    Role_ID int(7),
+	id int(7) NOT NULL,
+    Role_ID int(7) NOT NULL,
     FOREIGN KEY(id) REFERENCES User(id),
     FOREIGN KEY(Role_ID) REFERENCES Roles(Role_ID)
 );
@@ -74,7 +74,7 @@ create table User_Roles(
 create table Employee(
 	EMPNO int(7),
     Hire_Date date,
-    Work_DEPT varchar(15) NOT NULL,
+    Work_DEPT varchar(15),
     id int(7),
     PRIMARY KEY(EMPNO),
     FOREIGN KEY(id) REFERENCES User(id)
@@ -118,7 +118,7 @@ create table InvoiceHistory(
 );
 
 create table CreditCard(
-	CreditcardNO int(15),
+	CreditcardNO int(15) NOT NULL,
     Address_ID int(7),
     Owner_Name varchar(30) NOT NULL,
     CCNo int(7),
@@ -165,8 +165,8 @@ create table Warehouse_Has_Inventory(
 );
 
 create table Orders_Has_Carport(
-	Carport_ID int(7),
-    Order_ID int(7),
+	Carport_ID int(7) NOT NULL,
+    Order_ID int(7) NOT NULL,
     FOREIGN KEY(Carport_ID) REFERENCES Carport(Carport_ID),
     FOREIGN KEY(Order_ID) REFERENCES Orders(Order_ID)
 );
@@ -188,7 +188,7 @@ create table Employee_Warehouse(
 create table ProductionLine(
 	ProductionLine_ID int(7) AUTO_INCREMENT NOT NULL,
     EMPNO int(7),
-    Order_ID int(7),
+    Order_ID int(7) NOT NULL,
     Started DateTime,
     Completed DateTime,
     Status enum('Pending', 'Processing', 'Cancelled', 'Confirmed') DEFAULT 'Pending',
@@ -198,7 +198,7 @@ create table ProductionLine(
 
 drop trigger if exists `order_date_create`;
 create trigger `order_date_create` before insert
-    on `orders`
+    on `Orders`
     for each row 
     set new.`Order_Date` = now();
     
@@ -219,7 +219,7 @@ CREATE INDEX idx_inventoryid
 ON Inventory (Inventory_ID);
 
 CREATE INDEX idx_cpid_invid
-ON carport_has_inventory (Carport_ID, Inventory_ID);
+ON Carport_Has_Inventory (Carport_ID, Inventory_ID);
 
 insert into Roles values
   (1,'Admin');
@@ -365,13 +365,13 @@ insert into User_Roles values
   insert into Orders_Has_Carport(Carport_ID, Order_ID) values
   (2,3);
  
-  insert into productionline(Order_ID) values
+  insert into ProductionLine(Order_ID) values
   (1);
-  insert into productionline(Order_ID) values
+  insert into ProductionLine(Order_ID) values
   (2);
-  insert into productionline(Order_ID, EMPNO, Status) values
+  insert into ProductionLine(Order_ID, EMPNO, Status) values
   (3, 25, 'Processing');
-  insert into productionline(Order_ID, EMPNO, Status) values
+  insert into ProductionLine(Order_ID, EMPNO, Status) values
   (4, 25, 'Confirmed');
    
 insert into UserInfo values
@@ -380,9 +380,6 @@ insert into UserInfo values
 
 insert into User_Has_UserInfo values
   (1, 1);
-  
-
-  
   
   commit;
   

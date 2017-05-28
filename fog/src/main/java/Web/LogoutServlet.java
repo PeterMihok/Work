@@ -36,6 +36,6 @@ public class LogoutServlet extends BaseServlet
         // Delete session user
         HttpSession session = request.getSession();
         session.setAttribute(SessionKeys.user, new UserSessionDto());
-        response.sendRedirect("/");
+        response.sendRedirect("/FOG/");
     }
 }

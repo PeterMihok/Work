@@ -7,7 +7,7 @@
 <html>
 <head>
   <title>Build Carport</title>
-  
+  <link rel="stylesheet" href="../../css/style.css">
   <%@include file="/views/partial/header.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
   
@@ -50,7 +50,7 @@
                                 <td>${product.roofType}</td>
                                 <td>${product.price}</td>
                               <form action = "RemoveOrderServlet" method = "POST">
-                                <td> <button name="oid" type="number" value="${product.orderid}" onclick="return confirm('Remove Order?')">X</button></td>
+                                  <td> <button  class="btnx" name="oid" type="number" value="${product.orderid}" onclick="return confirm('Remove Order?')">X</button></td>
                                    </form>
                                      
                               
@@ -58,7 +58,7 @@
                 </c:forEach></table>
                                      Total Price: ${totalprice}kr
                                       <form action = "PurchaseOrdersServlet" method = "POST">
-                                <td> <button name="orders" type="number" value="${orderList}" onclick="return confirm('Purchase Cart?')">Purchase</button></td>
+                                <td> <button class="btnp" name="orders" type="number" value="${orderList}" onclick="return confirm('Purchase Cart?')">Purchase</button></td>
                                    </form>
                                  </c:when> 
                                  <c:otherwise> 

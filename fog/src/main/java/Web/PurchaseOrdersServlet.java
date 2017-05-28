@@ -59,7 +59,7 @@ private final OrderDAO odao;
     } catch (SQLException ex) {
         Logger.getLogger(PurchaseOrdersServlet.class.getName()).log(Level.SEVERE, null, ex);
     }
-        response.sendRedirect("/");
+        response.sendRedirect("/FOG");
         
     }
 }

@@ -33,7 +33,7 @@ public class SectionGeneration implements ICarportDesign {
     private int NoRoofPieces = 0;
     
     @Override
-   public void initPartGeneration(Carport cpp) throws Exception
+   public ArrayList initPartGeneration(Carport cpp) throws Exception
    {
        this.cp = cpp;
        this.invList = new ArrayList<>();
@@ -69,9 +69,7 @@ public class SectionGeneration implements ICarportDesign {
 
        //Convert to ArrayList of Carport_Has_Inventory Objects
        ArrayList<Carport_Has_Inventory> cpinvlist = genCPInvObjects(idList, cp.getCarportID());
-       
-       //Push to DB in mass batch insert
-       dao.InsertCarportInventory(cpinvlist);
+       return cpinvlist;
    }
    
     @Override
@@ -254,7 +252,7 @@ public class SectionGeneration implements ICarportDesign {
        
        //Calc amount of posts every 80cm Carport length - add another 1 CrossBeam
        int SupPos_AMT = ((cp.getLength()+79)/80)+1;
-        setNoSuppBeams(SupPos_AMT);
+       
        
        //Currently using standardised post depth and width
        int SupPosDepth = 38;
@@ -292,10 +290,12 @@ public class SectionGeneration implements ICarportDesign {
                
                invList.add(new Inventory(inv_id, tempLength, SupPosDepth, SupPosWidth, Material, WoodType));
            }  
+           
        }
         else if(invSuppBeam.getLength() > 600 && invSuppBeam.getLength() <= 1200)
         {
            invSuppBeam.setLength(invSuppBeam.getLength()/2);
+           SupPos_AMT = (SupPos_AMT) * 2;
                //Calc lowest value in DB 
            int tempLength = 0;
            try {
@@ -313,11 +313,12 @@ public class SectionGeneration implements ICarportDesign {
                Logger.getLogger(SectionGeneration.class.getName()).log(Level.SEVERE, null, ex);
            }
            
-           for(int i=0; i<(SupPos_AMT*2); i++)
+           for(int i=0; i<(SupPos_AMT); i++)
            {
                invList.add(new Inventory(inv_id, tempLength, SupPosDepth, SupPosWidth, Material, WoodType));
            }  
         }       
+        setNoSuppBeams(SupPos_AMT);
    }
    
     @Override
@@ -329,7 +330,6 @@ public class SectionGeneration implements ICarportDesign {
        //Material Type
        String Material = "Bræt";
        
-       //Calc amount of posts every 80cm Carport length - add another 1 CrossBeam
        int SupPos_AMT = 2;
        
        //Currently using standardised post depth and width

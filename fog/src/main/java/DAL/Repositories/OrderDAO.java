@@ -34,10 +34,10 @@ public class OrderDAO {
         Connection stmt = null;
         List<Purchase> purchaseList = new ArrayList<>();
         String sql ="SELECT *\n" +
-        "FROM fog.orders\n" +
-        "LEFT JOIN orders_has_carport ON orders.Order_ID=orders_has_carport.Order_ID\n" +
-        "LEFT JOIN carport ON orders_has_carport.Carport_ID=Carport.Carport_ID\n" +
-        "WHERE orders.id = ?\n" +
+        "FROM fog.Orders\n" +
+        "LEFT JOIN Orders_Has_Carport ON Orders.Order_ID=Orders_Has_Carport.Order_ID\n" +
+        "LEFT JOIN Carport ON Orders_Has_Carport.Carport_ID=Carport.Carport_ID\n" +
+        "WHERE Orders.id = ?\n" +
         "AND Status = 'Confirmed'";
         try
         {
@@ -77,12 +77,12 @@ public class OrderDAO {
         Connection stmt = null;
         List<Purchase> purchaseList = new ArrayList<>();
         String sql ="SELECT *\n" +
-        "FROM fog.orders\n" +
-        "LEFT JOIN orders_has_carport ON orders.Order_ID=orders_has_carport.Order_ID\n" +
-        "LEFT JOIN carport ON orders_has_carport.Carport_ID=Carport.Carport_ID\n" +
-        "WHERE orders.id = ?\n" +
+        "FROM fog.Orders\n" +
+        "LEFT JOIN Orders_Has_Carport ON Orders.Order_ID=Orders_Has_Carport.Order_ID\n" +
+        "LEFT JOIN Carport ON Orders_Has_Carport.Carport_ID=Carport.Carport_ID\n" +
+        "WHERE Orders.id = ?\n" +
         "AND Status = 'Confirmed'\n" +
-        "AND orders_has_carport.Carport_ID = ?";
+        "AND Orders_Has_Carport.Carport_ID = ?";
         try
         {
             stmt = DataAccessObject.getConnection();
@@ -122,9 +122,9 @@ public class OrderDAO {
         Connection stmt = null;
         List<Inventory> inventoryList = new ArrayList<>();
         String sql = "SELECT Inventory.Inventory_ID, Price*(Inventory_AMT) as Price, Carport_ID, Inventory_AMT, Inventory_Title, Length, Depth, Width, Material, Type, Box_AMT\n" +
-            "FROM fog.carport_has_inventory\n" +
-            "LEFT JOIN inventory ON carport_has_inventory.Inventory_ID=Inventory.Inventory_ID\n" +
-            "WHERE carport_has_inventory.Carport_ID = ?";
+            "FROM fog.Carport_Has_Inventory\n" +
+            "LEFT JOIN Inventory ON Carport_Has_Inventory.Inventory_ID=Inventory.Inventory_ID\n" +
+            "WHERE Carport_Has_Inventory.Carport_ID = ?";
         try
         {
               stmt = DataAccessObject.getConnection();
@@ -170,9 +170,9 @@ public class OrderDAO {
         int totalprice = 0;
         Connection stmt = null;
         String sql = "SELECT SUM(Price*Inventory_AMT) as TotalPrice\n" +
-            "FROM fog.carport_has_inventory\n" +
-            "LEFT JOIN inventory ON carport_has_inventory.Inventory_ID=Inventory.Inventory_ID\n" +
-            "WHERE carport_has_inventory.Carport_ID = ?";
+            "FROM fog.Carport_Has_Inventory\n" +
+            "LEFT JOIN Inventory ON Carport_Has_Inventory.Inventory_ID=Inventory.Inventory_ID\n" +
+            "WHERE Carport_Has_Inventory.Carport_ID = ?";
         try
         {
               stmt = DataAccessObject.getConnection();
@@ -196,7 +196,7 @@ public class OrderDAO {
      {
         Connection stmt = null;
        
-        String sql ="Update productionline set Status = ? WHERE Order_ID = ?";
+        String sql ="Update ProductionLine set Status = ? WHERE Order_ID = ?";
         try
         {
             stmt = DataAccessObject.getConnection();
@@ -216,7 +216,7 @@ public class OrderDAO {
      {
         Connection stmt = null;
        
-        String sql ="Update productionline set EMPNO = ? WHERE Order_ID = ?";
+        String sql ="Update ProductionLine set EMPNO = ? WHERE Order_ID = ?";
         try
         {
             stmt = DataAccessObject.getConnection();
@@ -237,7 +237,7 @@ public class OrderDAO {
          Order uorder = null;
          int cpid = 0;
          Connection stmt = null;
-         String sql = "insert into orders(id, status) values\n" +
+         String sql = "insert into Orders(id, status) values\n" +
             "(?, 'Pending')";
          //generate order and obtain order id with status = 'Pending'
           try
@@ -269,7 +269,7 @@ public class OrderDAO {
      public void insertCPOrder(int cpid, int oid) throws ClassNotFoundException
      {
         Connection stmt = null;
-        String sql = "insert into orders_has_carport(Carport_ID, Order_ID) values\n" +
+        String sql = "Insert into Orders_Has_Carport(Carport_ID, Order_ID) values\n" +
             "(?, ?)";
         try
         {
@@ -291,7 +291,7 @@ public class OrderDAO {
          Order uorder = null;
          Connection stmt = null;
          String sql = "Select *\n" +
-            "FROM orders\n" +
+            "FROM Orders\n" +
             "WHERE Order_ID = ?";
          try
         {
@@ -323,9 +323,9 @@ public class OrderDAO {
          List<CarportOrder> orderList = new ArrayList();
          Connection stmt = null;
          String sql = "Select *\n" +
-            "From orders\n" +
-            "LEFT JOIN orders_has_carport on orders_has_carport.Order_ID=orders.Order_ID\n" +
-            "LEFT JOIN carport on carport.Carport_ID=orders_has_carport.Carport_ID\n" +
+            "From Orders\n" +
+            "LEFT JOIN Orders_Has_Carport on Orders_Has_Carport.Order_ID=Orders.Order_ID\n" +
+            "LEFT JOIN Carport on Carport.Carport_ID=Orders_Has_Carport.Carport_ID\n" +
             "WHERE id = ?\n" +
             "AND Status = 'Pending'";
          
@@ -363,7 +363,7 @@ public class OrderDAO {
      {
          Connection stmt = null;
        
-        String sql ="Update orders set Status = ? WHERE Order_ID = ?";
+        String sql ="Update Orders set Status = ? WHERE Order_ID = ?";
         try
         {
             stmt = DataAccessObject.getConnection();
@@ -385,7 +385,7 @@ public class OrderDAO {
      {
          Connection stmt = DataAccessObject.getConnection();
          String stat = "Confirmed";
-        String sql = "Update orders set Status = ? WHERE Order_ID = ?";
+        String sql = "Update Orders set Status = ? WHERE Order_ID = ?";
         PreparedStatement ps = stmt.prepareStatement(sql);
         
         final int batchSize = 1000;
@@ -419,7 +419,7 @@ public class OrderDAO {
       public void insertOrderLines(List<CarportOrder> orderList) throws ClassNotFoundException, SQLException
      {
          Connection stmt = DataAccessObject.getConnection();
-         String sql = "insert into productionline(Order_ID, Status) values\n" +
+         String sql = "insert into ProductionLine(Order_ID, Status) values\n" +
           "(?, 'Pending')";
         PreparedStatement ps = stmt.prepareStatement(sql);
         

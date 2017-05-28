@@ -28,7 +28,7 @@ public class EmployeeDAO {
         boolean isemp = false;
         Connection stmt = null;
         String sql ="select *\n" +
-            "FROM employee \n" +
+            "FROM Employee \n" +
             "where id = ?;";
         try
         {

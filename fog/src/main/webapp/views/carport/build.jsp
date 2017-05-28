@@ -22,7 +22,7 @@
           <div id="build-carport">   
             <h1>Build Carport</h1>
           
-            <form action="/carport/build" method="post">
+            <form action="/FOG/carport/build" method="post">
                 <div class="field-wrap">
                     <label>        
                     Select Roof Type

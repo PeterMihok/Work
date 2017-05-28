@@ -30,10 +30,10 @@
         This order is currently pending(Pending) 
         <br />
         <br />
-       <form action = "CancelProduct" method = "POST">
+       <form action = "/FOG/CancelProduct" method = "POST">
            <button name="oid" type="number" value="${product.orderid}" onclick="return confirm('Are you sure you want to cancel this order?')" >Cancel Order</button>
        </form> 
-        <form action = "AssignProduct" method = "POST">
+        <form action = "/FOG/AssignProduct" method = "POST">
             <button name="oid" type="number" value="${product.orderid}" onclick="return confirm('Are you sure you want to be assigned this order?')" >Process Order</button>
         </form>
     </c:when>  
@@ -41,10 +41,10 @@
         This order is currently being processed(Processing) by employee( ${product.empno} )
         <br />
         <br />
-        <form action = "CompleteProduct" method = "POST">
+        <form action = "/FOG/CompleteProduct" method = "POST">
             <button name="oid" type="number" value="${product.orderid}" onclick="return confirm('Are you sure you have completed this order?')" >Complete Order</button>
         </form>
-        <form action = "CancelProduct" method = "POST">
+        <form action = "/FOG/CancelProduct" method = "POST">
             <button name="oid" type="number" value="${product.orderid}" onclick="return confirm('Are you sure you want to cancel this order?')" >Cancel Order</button>
         </form> 
     </c:when> 

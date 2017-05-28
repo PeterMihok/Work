@@ -10,6 +10,9 @@ import java.util.LinkedList;
 import java.util.UUID;
 import DAL.Repositories.GenerateCarportDAO;
 import Domain.Carport;
+import Domain.Carport_Has_Inventory;
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author Sean
@@ -46,7 +49,10 @@ public class GenCarport {
             System.err.println("Caught SQLException: " + e.getMessage());
         }
         cpval = gcdao.CarportFromUUID(cp.getUUID());
-        sGen.initPartGeneration(cpval);
+         ArrayList<Carport_Has_Inventory> cpinvlist = new ArrayList();
+         cpinvlist = sGen.initPartGeneration(cpval);
+         //Push to DB in mass batch insert
+        gcdao.InsertCarportInventory(cpinvlist);
     }
     
     

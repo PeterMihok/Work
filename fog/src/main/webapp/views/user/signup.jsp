@@ -10,7 +10,7 @@
 <html>
 <head>
   <title>Signup Page</title>
-  
+  <link rel="stylesheet" href="../../css/style.css">
   <%@include file="/views/partial/header.jsp" %>
 <% HashMap<String, String> errors = (HashMap<String, String>) request.getAttribute("errors"); %>
   
@@ -31,7 +31,7 @@
           </c:if>
           <h1>Sign Up for FOG</h1>
           
-          <form action="/signup" method="post">
+          <form action="/FOG/signup" method="post">
           
           <div class="top-row">
             <div class="field-wrap">
